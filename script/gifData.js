@@ -1,0 +1,65 @@
+const gifDataArr = [{
+    "file": "binoculars.gif",
+    "cat": "custom",
+    "tags": ["thomas", "t-bone", "kim jong-un"]
+}, {
+    "file": "darth-vader.gif",
+    "cat": "custom",
+    "tags": ["thomas", "t-bone", "star wars"]
+}, {
+    "file": "diglett.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "eggs.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "haystack.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "hiding-bushes.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "jamesbond-mask.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "merkle-illuminati.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "metro-gm.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "pennywise.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "pennywise2.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "red-pill_v2.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "red-pill.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "red-pill2_v2.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "red-pill2.gif",
+    "cat": "custom",
+    "tags": []
+}, {
+    "file": "whos-that-pokemon.gif",
+    "cat": "custom",
+    "tags": []
+}]

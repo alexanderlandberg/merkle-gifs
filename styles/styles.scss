@@ -1,0 +1,70 @@
+@import "./functions/_fn-encode-inline-svg";
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #121212;
+}
+
+#gif-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.gif-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: calc(33.3334% - 8px);
+    height: 0;
+    padding-bottom: 20%;
+    margin: 4px;
+    
+    img {
+        width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        position: absolute;
+    }
+
+    input {
+        display: none;
+    }
+
+    .link-icon {
+        position: absolute;
+        cursor: pointer;
+        z-index: 1;
+        top: 8px;
+        right: 8px;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>');
+        transition: all .6s cubic-bezier(0.075, 0.82, 0.165, 1);
+        opacity: 0;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &.clicked {
+            opacity: 1;
+            transform: scale(1.3);
+            transition: transform .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+            background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FBF532"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>');
+        }
+    }
+
+    &:hover .link-icon {
+        opacity: 1;
+
+        &.clicked {
+            transform: scale(1.3);
+            transition: transform .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+            background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FBF532"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>');
+        }
+    }
+}

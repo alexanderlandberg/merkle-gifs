@@ -1,65 +1,97 @@
 const gifDataArr = [{
     "file": "binoculars.gif",
     "cat": "custom",
-    "tags": ["thomas", "t-bone", "kim jong-un"]
+    "tags": ["thomas", "kim jong-un"]
 }, {
     "file": "darth-vader.gif",
     "cat": "custom",
-    "tags": ["thomas", "t-bone", "star wars"]
+    "tags": ["thomas", "star wars"]
 }, {
     "file": "diglett.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "eggs.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "haystack.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "hiding-bushes.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "jamesbond-mask.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "merkle-illuminati.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["merkle"]
 }, {
     "file": "metro-gm.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "pennywise.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "pennywise2.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "red-pill_v2.gif",
     "cat": "custom",
-    "tags": []
-}, {
-    "file": "red-pill.gif",
-    "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "red-pill2_v2.gif",
     "cat": "custom",
-    "tags": []
-}, {
-    "file": "red-pill2.gif",
-    "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
 }, {
     "file": "whos-that-pokemon.gif",
     "cat": "custom",
-    "tags": []
+    "tags": ["thomas"]
+}, {
+    "file": "bobby.gif",
+    "cat": "merkle",
+    "tags": ["bobby"]
+}, {
+    "file": "jim_clap.gif",
+    "cat": "merkle",
+    "tags": ["jimmy"]
+}, {
+    "file": "jim_clap2.gif",
+    "cat": "merkle",
+    "tags": ["jimmy"]
+}, {
+    "file": "jim_wave.gif",
+    "cat": "merkle",
+    "tags": ["jimmy"]
+}, {
+    "file": "jim-wendy_clap.gif",
+    "cat": "merkle",
+    "tags": ["jimmy", "wendy"]
+}, {
+    "file": "jim-wendy_wave.gif",
+    "cat": "merkle",
+    "tags": ["jimmy", "wendy"]
+}, {
+    "file": "kamelasa.gif",
+    "cat": "merkle",
+    "tags": ["nordics"]
+}, {
+    "file": "SameSame.gif",
+    "cat": "merkle",
+    "tags": ["jimmy"]
+}, {
+    "file": "tbone-scratch.gif",
+    "cat": "merkle",
+    "tags": ["thomas"]
+}, {
+    "file": "tillykke.gif",
+    "cat": "merkle",
+    "tags": ["kold", "laila"]
 }]

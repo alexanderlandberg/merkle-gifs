@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", init);
 
 function init() {
     addGifs();
-    tester();
 }
 
 function addGifs() {

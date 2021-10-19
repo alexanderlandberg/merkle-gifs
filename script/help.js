@@ -1,6 +1,6 @@
 // CREATE JSON OF IMAGES
 
-var folder = "gifs/";
+var folder = "gifs/new/";
 let newData = [];
 
 $.ajax({
@@ -12,7 +12,7 @@ $.ajax({
 
                 let tester = {
                     "file": `${val}`,
-                    "cat": "",
+                    "cat": "merkle",
                     "tags": []
                 };
 

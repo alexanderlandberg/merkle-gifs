@@ -10,7 +10,8 @@
 @import "./variables/misc";
 
 // variables
-@import "./mixins/inline-svg";
+@import "./mixins/mix-breakpoint";
+@import "./mixins/mix-inline-svg";
 
 // organisms
 @import "./organisms/main";

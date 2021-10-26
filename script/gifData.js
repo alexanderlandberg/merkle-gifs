@@ -1,8 +1,7 @@
 const gifDataArr = [{
     "file": "binoculars.gif",
     "categories": ["custom"],
-    "people": ["thomas"],
-    "tags": ["kim jong-un"]
+    "people": ["thomas"]
 }, {
     "file": "darth-vader.gif",
     "categories": ["custom"],
@@ -11,7 +10,8 @@ const gifDataArr = [{
 }, {
     "file": "diglett.gif",
     "categories": ["custom"],
-    "people": ["thomas"]
+    "people": ["thomas"],
+    "tags": ["pokémon"]
 }, {
     "file": "eggs.gif",
     "categories": ["custom"],
@@ -39,23 +39,28 @@ const gifDataArr = [{
 }, {
     "file": "pennywise.gif",
     "categories": ["custom"],
-    "people": ["thomas"]
+    "people": ["thomas"],
+    "tags": ["pennywise"]
 }, {
     "file": "pennywise2.gif",
     "categories": ["custom"],
-    "people": ["thomas"]
+    "people": ["thomas"],
+    "tags": ["pennywise"]
 }, {
     "file": "red-pill_v2.gif",
     "categories": ["custom"],
-    "people": ["thomas"]
+    "people": ["thomas"],
+    "tags": ["matrix"]
 }, {
     "file": "red-pill2_v2.gif",
     "categories": ["custom"],
-    "people": ["thomas"]
+    "people": ["thomas"],
+    "tags": ["matrix"]
 }, {
     "file": "whos-that-pokemon.gif",
     "categories": ["custom"],
-    "people": ["thomas"]
+    "people": ["thomas"],
+    "tags": ["pokémon"]
 }, {
     "file": "bobby.gif",
     "categories": ["reactions"],
@@ -63,23 +68,23 @@ const gifDataArr = [{
 }, {
     "file": "jim_clap.gif",
     "categories": ["reactions"],
-    "people": ["jimmy"]
+    "people": ["jimmi"]
 }, {
     "file": "jim_clap2.gif",
     "categories": ["reactions"],
-    "people": ["jimmy"]
+    "people": ["jimmi"]
 }, {
     "file": "jim_wave.gif",
     "categories": ["reactions"],
-    "people": ["jimmy"]
+    "people": ["jimmi"]
 }, {
     "file": "jim-wendy_clap.gif",
     "categories": ["reactions"],
-    "people": ["jimmy", "wendy"]
+    "people": ["jimmi", "wendy"]
 }, {
     "file": "jim-wendy_wave.gif",
     "categories": ["reactions"],
-    "people": ["jimmy", "wendy"]
+    "people": ["jimmi", "wendy"]
 }, {
     "file": "kamelasa.gif",
     "categories": ["reactions"],
@@ -87,7 +92,7 @@ const gifDataArr = [{
 }, {
     "file": "SameSame.gif",
     "categories": ["reactions"],
-    "people": ["jimmy"]
+    "people": ["jimmi"]
 }, {
     "file": "tbone-scratch.gif",
     "categories": ["reactions"],

@@ -13,13 +13,13 @@ let gFavoritedGifs = [];
 let gFavoritedToggle = "off";
 
 const gifContainer = document.querySelector("#gif-container");
-const favorites = document.querySelector("#favorites");
+const favoriteToggle = document.querySelector("#favorite-toggle");
 
 // Init
 function init() {
     getLocalStorage();
-    favorites.addEventListener("click", toggleFavorites)
-    addAllGifs();
+    favoriteToggle.addEventListener("click", toggleFavorites)
+    sortGifs();
     for (let i = 0; i < labelLists.length; i++) {
         addLabels(labelLists[i]);
     }
@@ -78,9 +78,7 @@ function addSingleGif(parm) {
 // Sort gifs
 function sortGifs() {
     // empty gifList
-    console.log("BEFORE", gFavoritedGifs)
     gifContainer.innerHTML = "";
-    console.log("AFTER", gFavoritedGifs)
 
     // if no labels are active, then add all
     if (gActiveLabels.length === 0 && gFavoritedToggle === "off") {
@@ -111,7 +109,6 @@ function sortGifs() {
 
         // add gifs
         if (gifIsOn) {
-            console.log("HELLO")
             addSingleGif(gifData[i]);
         }
     }
@@ -188,16 +185,19 @@ function toggleLabel() {
 // Toggle favorites
 function toggleFavorites() {
 
-    if (!this.classList.contains("active")) {
-        this.classList.add("active");
+    if (!favoriteToggle.classList.contains("active")) {
+        favoriteToggle.classList.add("active");
         gFavoritedToggle = "on";
     } else {
-        this.classList.remove("active");
+        favoriteToggle.classList.remove("active");
         gFavoritedToggle = "off";
     }
 
     // Sort gifs
     sortGifs();
+
+    // add favorites list to localstorage
+    setLocalStorage();
 }
 
 // Add favorite
@@ -243,7 +243,8 @@ function copyToClipboard() {
 function setLocalStorage() {
     let merkleGifsData = {};
 
-    merkleGifsData.favorites = gFavoritedGifs;
+    merkleGifsData.favorited = gFavoritedGifs;
+    merkleGifsData.favoritedToggle = gFavoritedToggle;
 
     localStorage.setItem("merkleGifsData", JSON.stringify(merkleGifsData));
 }
@@ -251,10 +252,18 @@ function setLocalStorage() {
 // Get data from local storage
 function getLocalStorage() {
 
-    if (localStorage.getItem("myLocalPokedex") === null) {
+    // get local storage
+    if (localStorage.getItem("merkleGifsData") === null) {
         return;
     } else {
         let localData = JSON.parse(localStorage.getItem("merkleGifsData"));
-        gFavoritedGifs = localData.favorites;
+        gFavoritedGifs = localData.favorited;
+        gFavoritedToggle = localData.favoritedToggle;
     }
+
+    // update
+    if (gFavoritedToggle === "on") {
+        favoriteToggle.classList.add("active");
+    }
+
 }

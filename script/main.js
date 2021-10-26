@@ -253,12 +253,12 @@ function setLocalStorage() {
 function getLocalStorage() {
 
     // get local storage
-    if (localStorage.getItem("merkleGifsData") === null) {
+    if (localStorage.getItem("merkleGifsData") === null || localStorage.getItem("merkleGifsData") === "") {
         return;
     } else {
         let localData = JSON.parse(localStorage.getItem("merkleGifsData"));
-        gFavoritedGifs = localData.favorited;
-        gFavoritedToggle = localData.favoritedToggle;
+        typeof localData.favorited !== "undefined" ? gFavoritedGifs = localData.favorited : null;
+        typeof localData.favoritedToggle !== "undefined" ? gFavoritedToggle = localData.favoritedToggle : null;
     }
 
     // update

@@ -32,11 +32,7 @@
     @include mix-svg-favorite-outline($color-favorite);
     cursor: pointer;
     transition: all .3s $easing;
-    
-    &:hover {
-        // transform: scale(1.1);
-        // background-size: 54px;
-    }
+
     &.active {
         @include mix-svg-favorite-filled($color-favorite);
         & ~ #labels {
@@ -133,37 +129,37 @@
             }
         }
     }
-    @mixin label-styles($label-color){
-        .label {
+}
+@mixin label-styles($label-color){
+    .label {
+        color: $label-color;
+        border: 1px solid $label-color;
+        span {
             color: $label-color;
-            border: 1px solid $label-color;
-            span {
-                color: $label-color;
-            }
-            &::after {
-                @include mix-svg-x($label-color);
-            }
-            &.active {
-                background-color: $label-color;
-            }
         }
-    } 
-    #categories {
-        @include label-styles($color-categories);
-        &::before {
-            @include mix-svg-categories($color-categories);
+        &::after {
+            @include mix-svg-x($label-color);
+        }
+        &.active {
+            background-color: $label-color;
         }
     }
-    #people {
-        @include label-styles($color-people);
-        &::before {
-            @include mix-svg-people($color-people);
-        }
+} 
+#categories {
+    @include label-styles($color-categories);
+    &::before {
+        @include mix-svg-categories($color-categories);
     }
-    #tags {
-        @include label-styles($color-tag);
-        &::before {
-            @include mix-svg-tags($color-tag);
-        }
+}
+#people {
+    @include label-styles($color-people);
+    &::before {
+        @include mix-svg-people($color-people);
+    }
+}
+#tags {
+    @include label-styles($color-tag);
+    &::before {
+        @include mix-svg-tags($color-tag);
     }
 }

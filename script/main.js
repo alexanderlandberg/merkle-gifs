@@ -53,66 +53,6 @@ function addSingleGif(parm) {
     gifContainer.append(newDiv);
 }
 
-// Add labels
-function addLabels(labelName) {
-    // get tag list and amounts
-    let labelObj = {}
-    let labelArr = [];
-
-    for (let i = 0; i < gifData.length; i++) {
-        if (typeof gifData[i][labelName] !== "undefined") {
-            for (let j = 0; j < gifData[i][labelName].length; j++) {
-                if (labelObj[gifData[i][labelName][j]] === undefined) {
-                    labelObj[gifData[i][labelName][j]] = 1;
-                    labelArr.push(gifData[i][labelName][j])
-                } else {
-                    labelObj[gifData[i][labelName][j]]++;
-                }
-            }
-        }
-    }
-
-    // sort labelArr
-    labelArr.sort(function (a, b) {
-        return labelObj[b] - labelObj[a];
-    });
-
-    // add to DOM
-    for (let i = 0; i < labelArr.length; i++) {
-
-        // new div
-        let newDiv = document.createElement("div");
-        newDiv.classList.add("label");
-        newDiv.setAttribute("data-tag", labelArr[i]);
-        newDiv.innerHTML = `${labelArr[i]} <span>${labelObj[labelArr[i]]}</span>`;
-        newDiv.addEventListener("click", toggleLabel);
-
-        // append
-        document.querySelector(`#${labelName}`).append(newDiv);
-    }
-
-    // update global variables
-    gTagAmount[labelName] = labelObj;
-    gTagList[labelName] = labelArr;
-}
-
-// Toggle label
-function toggleLabel() {
-
-    const labelName = this.parentNode.getAttribute("id");
-
-    if (!this.classList.contains("active")) {
-        this.classList.add("active");
-        gActiveLabels.push(this.getAttribute("data-tag"))
-    } else {
-        this.classList.remove("active");
-        gActiveLabels = gActiveLabels.filter(e => e !== this.getAttribute("data-tag"));
-    }
-
-    // Sort gifs
-    sortGifs();
-}
-
 // Sort gifs
 function sortGifs() {
     // empty gifList
@@ -141,6 +81,76 @@ function sortGifs() {
             addSingleGif(gifData[i]);
         }
     }
+}
+
+// Add labels
+function addLabels(labelName) {
+    // get tag list and amounts
+    let labelObj = {}
+    let labelArr = [];
+
+    for (let i = 0; i < gifData.length; i++) {
+        if (typeof gifData[i][labelName] !== "undefined") {
+            for (let j = 0; j < gifData[i][labelName].length; j++) {
+                if (labelObj[gifData[i][labelName][j]] === undefined) {
+                    labelObj[gifData[i][labelName][j]] = 1;
+                    labelArr.push(gifData[i][labelName][j])
+                } else {
+                    labelObj[gifData[i][labelName][j]]++;
+                }
+            }
+        }
+    }
+
+    // sort labelArr alphabetically
+    labelArr.sort((a, b) => a.localeCompare(b));
+
+    // sort labelArr from amount
+    labelArr.sort(function (a, b) {
+        return labelObj[b] - labelObj[a];
+    });
+
+    // add to DOM
+    let newLabelCategory = document.createElement("div");
+    newLabelCategory.setAttribute("id", labelName);
+    newLabelCategory.classList.add("label-category");
+
+    for (let i = 0; i < labelArr.length; i++) {
+
+        // new div
+        let newDiv = document.createElement("div");
+        newDiv.classList.add("label");
+        newDiv.setAttribute("data-tag", labelArr[i]);
+        newDiv.innerHTML = `${labelArr[i]} <span>${labelObj[labelArr[i]]}</span>`;
+        newDiv.addEventListener("click", toggleLabel);
+
+        // append
+        newLabelCategory.append(newDiv);
+    }
+    if (labelArr.length > 0) {
+        document.querySelector(`#labels`).append(newLabelCategory);
+    }
+
+    // update global variables
+    gTagAmount[labelName] = labelObj;
+    gTagList[labelName] = labelArr;
+}
+
+// Toggle label
+function toggleLabel() {
+
+    const labelName = this.parentNode.getAttribute("id");
+
+    if (!this.classList.contains("active")) {
+        this.classList.add("active");
+        gActiveLabels.push(this.getAttribute("data-tag"))
+    } else {
+        this.classList.remove("active");
+        gActiveLabels = gActiveLabels.filter(e => e !== this.getAttribute("data-tag"));
+    }
+
+    // Sort gifs
+    sortGifs();
 }
 
 // Copy link to clipboard

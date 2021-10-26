@@ -9,10 +9,15 @@ let gTagAmount = {};
 let gTagList = {};
 let gActiveLabels = [];
 
+let gFavoritedGifs = [];
+let gFavoritedToggle = "off";
+
 const gifContainer = document.querySelector("#gif-container");
+const favorites = document.querySelector("#favorites");
 
 // Init
 function init() {
+    favorites.addEventListener("click", toggleFavorites)
     addAllGifs();
     for (let i = 0; i < labelLists.length; i++) {
         addLabels(labelLists[i]);
@@ -41,25 +46,43 @@ function addSingleGif(parm) {
     let urlStripped = window.location.toString().replace("/index.html", "");
     newInput.value = urlStripped + "/gifs/" + parm.file;
 
-    // new link icon
-    let newLinkIcon = document.createElement("div");
-    newLinkIcon.classList.add("link-icon");
-    newLinkIcon.setAttribute("onclick", "copyToClipboard(this)");
+    // new action list
+    let actionList = document.createElement("div");
+    actionList.classList.add("action-list");
+
+    // new favorite action
+    let actionFavorite = document.createElement("div");
+    actionFavorite.classList.add("action-favorite");
+    actionFavorite.addEventListener("click", addFavorite);
+    if (gFavoritedGifs.includes(parm.file)) {
+        actionFavorite.classList.add("favorited");
+    }
+
+    // new share action
+    let actionShare = document.createElement("div");
+    actionShare.classList.add("action-share");
+    actionShare.addEventListener("click", copyToClipboard);
 
     // append
+    actionList.append(actionShare);
+    actionList.append(actionFavorite);
+
+    newDiv.append(actionList);
     newDiv.append(newImg);
-    // newDiv.append(newInput);
-    newDiv.append(newLinkIcon);
+    newDiv.append(newInput);
+
     gifContainer.append(newDiv);
 }
 
 // Sort gifs
 function sortGifs() {
     // empty gifList
+    console.log("BEFORE", gFavoritedGifs)
     gifContainer.innerHTML = "";
+    console.log("AFTER", gFavoritedGifs)
 
     // if no labels are active, then add all
-    if (gActiveLabels.length === 0) {
+    if (gActiveLabels.length === 0 && gFavoritedToggle === "off") {
         addAllGifs()
         return;
     }
@@ -67,7 +90,7 @@ function sortGifs() {
     // sort from labels
     for (let i = 0; i < gifData.length; i++) {
 
-        // set gifIsOn to true if any label is on
+        // set gifIsOn to true if label is on
         let gifIsOn = false;
         for (let j = 0; j < labelLists.length; j++) {
             const labelName = labelLists[j];
@@ -76,8 +99,18 @@ function sortGifs() {
             }
         }
 
+        // favorites enabled
+        if (gFavoritedToggle === "on") {
+            if (!gFavoritedGifs.includes(gifData[i].file)) {
+                gifIsOn = false;
+            } else {
+                gifIsOn = true;
+            }
+        }
+
         // add gifs
         if (gifIsOn) {
+            console.log("HELLO")
             addSingleGif(gifData[i]);
         }
     }
@@ -139,8 +172,6 @@ function addLabels(labelName) {
 // Toggle label
 function toggleLabel() {
 
-    const labelName = this.parentNode.getAttribute("id");
-
     if (!this.classList.contains("active")) {
         this.classList.add("active");
         gActiveLabels.push(this.getAttribute("data-tag"))
@@ -153,17 +184,55 @@ function toggleLabel() {
     sortGifs();
 }
 
+// Toggle favorites
+function toggleFavorites() {
+
+    if (!this.classList.contains("active")) {
+        this.classList.add("active");
+        gFavoritedToggle = "on";
+    } else {
+        this.classList.remove("active");
+        gFavoritedToggle = "off";
+    }
+
+    // Sort gifs
+    sortGifs();
+}
+
+// Add favorite
+function addFavorite() {
+
+    let gifName = this.parentNode.parentNode.querySelector("img").getAttribute("src").replace('gifs/', '')
+
+    if (!this.classList.contains("favorited")) {
+        if (!gFavoritedGifs.includes(gifName)) {
+            gFavoritedGifs.push(gifName);
+        }
+        this.classList.add("favorited");
+    } else {
+        gFavoritedGifs.splice(gFavoritedGifs.indexOf(gifName), 1);
+        this.classList.remove("favorited");
+    }
+
+    // if favorites is showing, then sort
+    if (gFavoritedToggle === "on") {
+        sortGifs();
+    }
+
+    console.log(gFavoritedGifs);
+}
+
 // Copy link to clipboard
-function copyToClipboard(parm) {
+function copyToClipboard() {
     // copy to clipboard
-    const copyText = parm.parentNode.querySelector("input");
+    const copyText = this.parentNode.parentNode.querySelector("input");
     copyText.select();
     copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
 
     // style click effect
-    parm.classList.add("clicked");
+    this.classList.add("click-animate");
     setTimeout(() => {
-        parm.classList.remove("clicked");
-    }, 300);
+        this.classList.remove("click-animate");
+    }, 600);
 }

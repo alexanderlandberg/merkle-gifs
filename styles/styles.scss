@@ -9,6 +9,9 @@
 @import "./variables/colors";
 @import "./variables/misc";
 
+// variables
+@import "./mixins/inline-svg";
+
 // organisms
 @import "./organisms/main";
 @import "./organisms/sorting";

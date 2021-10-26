@@ -1,12 +1,41 @@
+#favorites {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    top: 8px;
+    left: 8px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include mix-svg-favorite-outline($color-favorite);
+    cursor: pointer;
+    transition: all .3s $easing;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+    &.active {
+        @include mix-svg-favorite-filled($color-favorite);
+        & ~ #labels {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+}
+
 #sorting-container {
     padding: 16px 24px;
+    top: 0;
+    position: sticky;
+    z-index: 999;
+    background-color: $color-dark;
     
     #labels {
         .label-category {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 24px 0;
+            margin: 16px 0;
             &::before {
                 content: "";
                 display: inline-block;
@@ -31,6 +60,7 @@
             cursor: pointer;
             transition: all .3s $easing;
             overflow: hidden;
+            user-select: none;
 
             span {
                 position: absolute;
@@ -82,8 +112,8 @@
                 &::after {
                     opacity: 1;
                     top: 8px;
-                    background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#{$color-dark}"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>');
                     transform: rotate(0);
+                    @include mix-svg-x($color-dark);
                 }
             }
         }
@@ -96,7 +126,7 @@
                 color: $label-color;
             }
             &::after {
-                background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#{$label-color}"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>');
+                @include mix-svg-x($label-color);
             }
             &.active {
                 background-color: $label-color;
@@ -106,19 +136,19 @@
     #categories {
         @include label-styles($color-categories);
         &::before {
-            background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#{$color-categories}"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.15 3.4L7.43 9.48c-.41.66.07 1.52.85 1.52h7.43c.78 0 1.26-.86.85-1.52L12.85 3.4c-.39-.64-1.31-.64-1.7 0z"/><circle cx="17.5" cy="17.5" r="4.5"/><path d="M4 21.5h6c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1z"/></svg>');
+            @include mix-svg-categories($color-categories);
         }
     }
     #people {
         @include label-styles($color-people);
         &::before {
-            background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#{$color-people}"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"/></svg>');
+            @include mix-svg-people($color-people);
         }
     }
     #tags {
         @include label-styles($color-tag);
         &::before {
-            background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#{$color-tag}"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>');
+            @include mix-svg-tags($color-tag);
         }
     }
 }

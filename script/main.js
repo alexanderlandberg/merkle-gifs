@@ -4,17 +4,19 @@ window.addEventListener("DOMContentLoaded", init);
 // Global variables
 const gifData = gifDataArr;
 
-let gTagAmount;
-let gTagList;
-let gActiveTags = [];
+const labelLists = ["categories", "people", "tags"];
+let gTagAmount = {};
+let gTagList = {};
+let gActiveLabels = [];
 
 const gifContainer = document.querySelector("#gif-container");
-const tags = document.querySelector("#tags");
 
 // Init
 function init() {
     addAllGifs();
-    addTags();
+    for (let i = 0; i < labelLists.length; i++) {
+        addLabels(labelLists[i]);
+    }
 }
 
 // Add all gifs
@@ -46,63 +48,65 @@ function addSingleGif(parm) {
 
     // append
     newDiv.append(newImg);
-    newDiv.append(newInput);
+    // newDiv.append(newInput);
     newDiv.append(newLinkIcon);
     gifContainer.append(newDiv);
 }
 
-// Add tags
-function addTags() {
-
+// Add labels
+function addLabels(labelName) {
     // get tag list and amounts
-    let tagObj = {}
-    let tagArr = [];
+    let labelObj = {}
+    let labelArr = [];
 
     for (let i = 0; i < gifData.length; i++) {
-        for (let j = 0; j < gifData[i].tags.length; j++) {
-            if (tagObj[gifData[i].tags[j]] === undefined) {
-                tagObj[gifData[i].tags[j]] = 1;
-                tagArr.push(gifData[i].tags[j])
-            } else {
-                tagObj[gifData[i].tags[j]]++;
+        if (typeof gifData[i][labelName] !== "undefined") {
+            for (let j = 0; j < gifData[i][labelName].length; j++) {
+                if (labelObj[gifData[i][labelName][j]] === undefined) {
+                    labelObj[gifData[i][labelName][j]] = 1;
+                    labelArr.push(gifData[i][labelName][j])
+                } else {
+                    labelObj[gifData[i][labelName][j]]++;
+                }
             }
         }
     }
 
-    // sort tagArr
-    tagArr.sort(function (a, b) {
-        return tagObj[b] - tagObj[a];
+    // sort labelArr
+    labelArr.sort(function (a, b) {
+        return labelObj[b] - labelObj[a];
     });
 
     // add to DOM
-    for (let i = 0; i < tagArr.length; i++) {
+    for (let i = 0; i < labelArr.length; i++) {
 
         // new div
         let newDiv = document.createElement("div");
-        newDiv.classList.add("tag");
-        newDiv.setAttribute("data-tag", tagArr[i]);
-        newDiv.innerHTML = `${tagArr[i]} <span>${tagObj[tagArr[i]]}</span>`;
-        newDiv.addEventListener("click", toggleTag);
+        newDiv.classList.add("label");
+        newDiv.setAttribute("data-tag", labelArr[i]);
+        newDiv.innerHTML = `${labelArr[i]} <span>${labelObj[labelArr[i]]}</span>`;
+        newDiv.addEventListener("click", toggleLabel);
 
         // append
-        tags.append(newDiv);
+        document.querySelector(`#${labelName}`).append(newDiv);
     }
 
     // update global variables
-    gTagAmount = tagObj;
-    gTagList = tagArr;
+    gTagAmount[labelName] = labelObj;
+    gTagList[labelName] = labelArr;
 }
 
-// Toggle tag
-function toggleTag() {
+// Toggle label
+function toggleLabel() {
+
+    const labelName = this.parentNode.getAttribute("id");
 
     if (!this.classList.contains("active")) {
         this.classList.add("active");
-        console.log(this.getAttribute("data-tag"))
-        gActiveTags.push(this.getAttribute("data-tag"))
+        gActiveLabels.push(this.getAttribute("data-tag"))
     } else {
         this.classList.remove("active");
-        gActiveTags = gActiveTags.filter(e => e !== this.getAttribute("data-tag"));
+        gActiveLabels = gActiveLabels.filter(e => e !== this.getAttribute("data-tag"));
     }
 
     // Sort gifs
@@ -111,28 +115,32 @@ function toggleTag() {
 
 // Sort gifs
 function sortGifs() {
-
     // empty gifList
     gifContainer.innerHTML = "";
 
-    // if no tags is active, then add all
-    if (gActiveTags.length === 0) {
+    // if no labels are active, then add all
+    if (gActiveLabels.length === 0) {
         addAllGifs()
         return;
     }
 
-    // sort from tags
+    // sort from labels
     for (let i = 0; i < gifData.length; i++) {
 
-        // if any of the tags in the data matches with active tags
-        console.log(gActiveTags.some(j => gifData[i].tags.includes(j)))
+        // set gifIsOn to true if any label is on
+        let gifIsOn = false;
+        for (let j = 0; j < labelLists.length; j++) {
+            const labelName = labelLists[j];
+            if (typeof gifData[i][labelName] !== "undefined" && gActiveLabels.some(e => gifData[i][labelName].includes(e))) {
+                gifIsOn = true;
+            }
+        }
 
-        if (gActiveTags.some(j => gifData[i].tags.includes(j))) {
+        // add gifs
+        if (gifIsOn) {
             addSingleGif(gifData[i]);
         }
     }
-
-
 }
 
 // Copy link to clipboard

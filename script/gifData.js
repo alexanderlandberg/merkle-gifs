@@ -1,97 +1,99 @@
 const gifDataArr = [{
     "file": "binoculars.gif",
-    "cat": "custom",
-    "tags": ["thomas", "kim jong-un"]
+    "categories": ["custom"],
+    "people": ["thomas"],
+    "tags": ["kim jong-un"]
 }, {
     "file": "darth-vader.gif",
-    "cat": "custom",
-    "tags": ["thomas", "star wars"]
+    "categories": ["custom"],
+    "people": ["thomas"],
+    "tags": ["star wars"]
 }, {
     "file": "diglett.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "eggs.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "haystack.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "hiding-bushes.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "jamesbond-mask.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "merkle-illuminati.gif",
-    "cat": "custom",
+    "categories": ["custom"],
     "tags": ["merkle"]
 }, {
     "file": "metro-gm.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "pennywise.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "pennywise2.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "red-pill_v2.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "red-pill2_v2.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "whos-that-pokemon.gif",
-    "cat": "custom",
-    "tags": ["thomas"]
+    "categories": ["custom"],
+    "people": ["thomas"]
 }, {
     "file": "bobby.gif",
-    "cat": "merkle",
-    "tags": ["bobby"]
+    "categories": ["reactions"],
+    "people": ["bobby"]
 }, {
     "file": "jim_clap.gif",
-    "cat": "merkle",
-    "tags": ["jimmy"]
+    "categories": ["reactions"],
+    "people": ["jimmy"]
 }, {
     "file": "jim_clap2.gif",
-    "cat": "merkle",
-    "tags": ["jimmy"]
+    "categories": ["reactions"],
+    "people": ["jimmy"]
 }, {
     "file": "jim_wave.gif",
-    "cat": "merkle",
-    "tags": ["jimmy"]
+    "categories": ["reactions"],
+    "people": ["jimmy"]
 }, {
     "file": "jim-wendy_clap.gif",
-    "cat": "merkle",
-    "tags": ["jimmy", "wendy"]
+    "categories": ["reactions"],
+    "people": ["jimmy", "wendy"]
 }, {
     "file": "jim-wendy_wave.gif",
-    "cat": "merkle",
-    "tags": ["jimmy", "wendy"]
+    "categories": ["reactions"],
+    "people": ["jimmy", "wendy"]
 }, {
     "file": "kamelasa.gif",
-    "cat": "merkle",
+    "categories": ["reactions"],
     "tags": ["nordics"]
 }, {
     "file": "SameSame.gif",
-    "cat": "merkle",
-    "tags": ["jimmy"]
+    "categories": ["reactions"],
+    "people": ["jimmy"]
 }, {
     "file": "tbone-scratch.gif",
-    "cat": "merkle",
-    "tags": ["thomas"]
+    "categories": ["reactions"],
+    "people": ["thomas"]
 }, {
     "file": "tillykke.gif",
-    "cat": "merkle",
-    "tags": ["kold", "laila"]
+    "categories": ["reactions"],
+    "people": ["kold", "laila"]
 }]

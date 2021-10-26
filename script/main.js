@@ -17,6 +17,7 @@ const favorites = document.querySelector("#favorites");
 
 // Init
 function init() {
+    getLocalStorage();
     favorites.addEventListener("click", toggleFavorites)
     addAllGifs();
     for (let i = 0; i < labelLists.length; i++) {
@@ -219,7 +220,8 @@ function addFavorite() {
         sortGifs();
     }
 
-    console.log(gFavoritedGifs);
+    // add favorites list to localstorage
+    setLocalStorage();
 }
 
 // Copy link to clipboard
@@ -235,4 +237,24 @@ function copyToClipboard() {
     setTimeout(() => {
         this.classList.remove("click-animate");
     }, 600);
+}
+
+// Add data to local storage
+function setLocalStorage() {
+    let merkleGifsData = {};
+
+    merkleGifsData.favorites = gFavoritedGifs;
+
+    localStorage.setItem("merkleGifsData", JSON.stringify(merkleGifsData));
+}
+
+// Get data from local storage
+function getLocalStorage() {
+
+    if (localStorage.getItem("myLocalPokedex") === null) {
+        return;
+    } else {
+        let localData = JSON.parse(localStorage.getItem("merkleGifsData"));
+        gFavoritedGifs = localData.favorites;
+    }
 }

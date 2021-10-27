@@ -9,6 +9,18 @@ body {
   margin: 0;
   background-color: #121212;
   font-family: "Roboto", sans-serif;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#main {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 #sorting-container {

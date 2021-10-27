@@ -7,4 +7,16 @@ body {
     margin: 0;
     background-color: $color-dark;
     font-family: $fontstack-base;
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+#main {
+    max-width: 1000px;
+    margin: 0 auto;
 }

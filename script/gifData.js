@@ -1,4 +1,8 @@
 const gifDataArr = [{
+    "file": "jim-wave2.gif",
+    "categories": ["reactions"],
+    "people": ["jimmi"]
+}, {
     "file": "binoculars.gif",
     "categories": ["custom"],
     "people": ["thomas"]

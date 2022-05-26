@@ -12,6 +12,7 @@ let gActiveLabels = [];
 let gFavoritedGifs = [];
 let gFavoritedToggle = "off";
 
+const mainContainer = document.querySelector("#main");
 const gifContainer = document.querySelector("#gif-container");
 const favoriteToggle = document.querySelector("#favorite-toggle");
 
@@ -64,6 +65,9 @@ function addSingleGif(parm) {
     actionShare.classList.add("action-share");
     actionShare.addEventListener("click", copyToClipboard);
 
+    // new eventlisteners
+    newDiv.addEventListener("click", openModal);
+
     // append
     actionList.append(actionShare);
     actionList.append(actionFavorite);
@@ -73,6 +77,31 @@ function addSingleGif(parm) {
     newDiv.append(newInput);
 
     gifContainer.append(newDiv);
+}
+
+// Modal
+function openModal() {
+    console.log("open", this);
+
+    let newModal = document.createElement("div");
+    newModal.id = "gif-modal";
+    newModal.addEventListener("click", closeModal);
+
+    let newImgWrapper = document.createElement("div");
+    newImgWrapper.classList.add("img-wrapper");
+
+    let newImg = document.createElement("img");
+    newImg.src = this.querySelector("img").src;
+
+    newImgWrapper.append(newImg);
+    newModal.append(newImgWrapper);
+    mainContainer.append(newModal);
+}
+
+function closeModal(parm) {
+    if (parm.target.tagName !== "IMG") {
+        document.querySelector("#gif-modal").remove();
+    }
 }
 
 // Sort gifs
